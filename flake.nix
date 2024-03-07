@@ -20,28 +20,16 @@
             export NLTK_DATA=./corpora/
             unset SOURCE_DATE_EPOCH
           '';
-          packages = with pkgs; [ python311 virtualenv poetry ] ++
-            (with pkgs.python311Packages; [
-              pip
-              # poetry-core
-              llama-index
-              # # llama-index-llms-ollama
-              # qdrant-client
-              # torch
-              # transformers
-              # (python3.pkgs.buildPythonPackage {
-              #   pname = "llama-index-llms-ollama";
-              #   version = "";
-              #   src = "${repo}/llama-index-integrations/llms/llama-index-llms-ollama";
-              #   format = "pyproject";
-              #   doCheck = false;
-              #   propogatedBuildInputs = [
-              #     # llama-hub
-              #     mypy
-              #     llama-index-core
-              #   ];
-              # })
-            ]);
+          packages = with pkgs; [
+            python311
+            virtualenv
+            bashInteractive
+            wget
+          ] ++
+          (with pkgs.python311Packages; [
+            pip
+            llama-index
+          ]);
         };
       });
     };
